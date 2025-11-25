@@ -1,51 +1,1134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web test</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <title>Magic Book - Nhà xuất bản MapStudy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Biến màu pastel */
+        :root {
+            --primary: #A8D8EA; /* Xanh pastel nhạt */
+            --secondary: #AA96DA; /* Tím pastel */
+            --accent: #FFD3B6; /* Cam pastel */
+            --light: #FFFFD2; /* Vàng pastel nhạt */
+            --text: #5D5D5D; /* Chữ xám đậm */
+            --success: #C7F5D9; /* Xanh lá pastel */
+            --shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        /* Banner thực hành */
+        .practice-banner {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            color: var(--text);
+            opacity: 0.8;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--secondary);
+            transition: transform 0.3s ease;
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: var(--text);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="books" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><text x="10" y="15" font-size="12" fill="rgba(255,255,255,0.1)">📚</text></pattern></defs><rect width="100" height="100" fill="url(%23books)"/></svg>');
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--light);
+            color: var(--text);
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+            background: white;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+            font-size: 2.5rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 1.2rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: var(--text);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .product-info {
+            padding: 2rem;
+        }
+        
+        .product-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .product-publisher {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .add-to-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            font-size: 1.3rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            margin-bottom: 0.8rem;
+            display: block;
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.8rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            color: var(--text);
+            opacity: 0.7;
+        }
+        
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 500px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1001;
+            padding: 2rem;
+            overflow-y: auto;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--secondary);
+            transition: transform 0.3s ease;
+        }
+        
+        .close-cart:hover {
+            transform: rotate(90deg);
+        }
+        
+        .cart-items {
+            margin-bottom: 2rem;
+            min-height: 200px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .cart-item-info h4 {
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--text);
+            opacity: 0.8;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .quantity-btn {
+            background: var(--primary);
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: 10px;
+        }
+        
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 15px;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+        }
+        
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Checkout Form */
+        .checkout-form {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        /* Success Modal */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1002;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .success-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: var(--shadow);
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .success-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .success-message {
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cart-modal {
+                width: 100%;
+                max-width: none;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Banner thực hành -->
+    <div class="practice-banner">
+        🎓 TRANG WEB THỰC HÀNH - DỰ ÁN HỌC TẬP - KHÔNG PHẢI WEBSITE THƯƠNG MẠI THẬT
+    </div>
+
+    <!-- Header -->
     <header>
-        <h1>Welcome to aHaof's Team Site</h1>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-image">MB</div>
+                <div>
+                    <div class="logo-text">Magic Book</div>
+                    <div class="tagline">Sách hay - Tri thức mới</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Trang chủ</a></li>
+                    <li><a href="#products">Sản phẩm</a></li>
+                    <li><a href="#about">Giới thiệu</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-basket"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
     </header>
-    <main>
-        <p>Main Part <sup><sup>of the main tree</sup></sup></p>
-        <div id="content" style="margin: auto; width: 80%; padding: 10px; border: 1px solid #ccc;" >
-            <!-- Dynamic content will be loaded here -->
-             <p class="card"> Life short, dream big.</p>
-             <p class="card"> Rich in happiness</p>
-        </div>
 
-        <div>
-            <table>
-                <caption>Tổ viên</caption>
-                <tr>
-                    <th>Do Hao</th>
-                    <th>Dang Quynh</th>
-                    <th>Quynh Nhu</th>
-                    <th>Van Manh</th>
-                </tr>
-                <tr>
-                    <td>Owner</td>
-                    <td>Doggo</td>
-                    <td>Unemployer</td>
-                    <td>Kinda Homeless</td>
-                </tr>
-            </table>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Magic Book</h1>
+            <p>Khám phá bộ sách Vật Lý 12 từ Nhà xuất bản MapStudy - Biến việc học thành phép màu!</p>
+            <a href="#products" class="btn">Khám phá ngay</a>
         </div>
-        <div>
-            <img src="att.T5K0r8U-jWynNOfXIAgf6aBIXRQhDcileV_voSat344.jpeg" alt="Sample Image" width="250">
-            <img src="IMG_3412.jpeg" alt="Sample Image" width="250">
-            <img src="IMG_3411.jpeg" alt="Sample Image" width="250">
-            <img src="IMG_3408.dng" alt="Sample Image" width="250">
-        </div>
+    </section>
 
-    </main>
-    <footer>
-        <p>&copy; 2036 Web Page</p>
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <h2 class="section-title">Bộ Sách Vật Lý 12</h2>
+        <p class="section-subtitle">Nhà xuất bản MapStudy - Đồng hành cùng sự thành công của bạn</p>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Về Magic Book</h3>
+                <p>Magic Book là đơn vị phân phối chính thức các đầu sách chất lượng từ Nhà xuất bản MapStudy. Chúng tôi cam kết mang đến những cuốn sách tốt nhất giúp học sinh đạt kết quả cao trong học tập.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên kết nhanh</h3>
+                <a href="#home">Trang chủ</a>
+                <a href="#products">Sản phẩm</a>
+                <a href="#about">Giới thiệu</a>
+                <a href="#contact">Liên hệ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Thông tin liên hệ</h3>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>poxahwass@gmail.com</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <span>0911 777 666</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>123 Năm Căn, Cà Mau</span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Magic Book. Trang web thực hành | Nhà xuất bản MapStudy
+        </div>
     </footer>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-basket"></i> Giỏ hàng của bạn</h2>
+            <button class="close-cart" id="closeCart">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-total" id="cartTotal">
+            Tổng cộng: 0₫
+        </div>
+        
+        <!-- Checkout Form -->
+        <div class="checkout-form" id="checkoutForm">
+            <h3 style="color: var(--secondary); margin-bottom: 1.5rem; text-align: center;">Thông tin đặt hàng</h3>
+            <div class="form-group">
+                <label for="customerName">Họ và tên *</label>
+                <input type="text" id="customerName" placeholder="Nhập họ và tên" required>
+            </div>
+            <div class="form-group">
+                <label for="customerPhone">Số điện thoại *</label>
+                <input type="tel" id="customerPhone" placeholder="Nhập số điện thoại" required>
+            </div>
+            <div class="form-group">
+                <label for="customerEmail">Email *</label>
+                <input type="email" id="customerEmail" placeholder="Nhập email" required>
+            </div>
+            <div class="form-group">
+                <label for="customerAddress">Địa chỉ nhận hàng *</label>
+                <textarea id="customerAddress" rows="3" placeholder="Nhập địa chỉ chi tiết" required></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="paymentMethod">Phương thức thanh toán</label>
+                    <select id="paymentMethod">
+                        <option value="cod">Thanh toán khi nhận hàng</option>
+                        <option value="bank">Chuyển khoản ngân hàng</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="shippingMethod">Phương thức vận chuyển</label>
+                    <select id="shippingMethod">
+                        <option value="standard">Giao hàng tiêu chuẩn (3-5 ngày)</option>
+                        <option value="fast">Giao hàng nhanh (1-2 ngày)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="customerNote">Ghi chú (tùy chọn)</label>
+                <textarea id="customerNote" rows="2" placeholder="Ghi chú thêm cho đơn hàng"></textarea>
+            </div>
+        </div>
+        
+        <button class="checkout-btn" id="checkoutBtn">
+            <i class="fas fa-credit-card"></i> Tiến hành đặt hàng
+        </button>
+        <button class="checkout-btn" id="confirmOrderBtn" style="display: none; background: var(--success); color: var(--text);">
+            <i class="fas fa-check-circle"></i> Xác nhận đặt hàng
+        </button>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="success-title">Đặt hàng thành công!</h2>
+            <p class="success-message" id="successMessage">
+                Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.
+            </p>
+            <button class="btn" onclick="closeSuccessModal()" style="background: var(--secondary); color: white;">
+                Tiếp tục mua sắm
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Product data for MapStudy books
+        const products = [
+            {
+                id: 1,
+                title: "Đột phá Lý 12",
+                publisher: "MapStudy",
+                price: 135000,
+                emoji: "🚀",
+                badge: "Bán chạy"
+            },
+            {
+                id: 2,
+                title: "Tổng ôn Lý thuyết Lý 12",
+                publisher: "MapStudy", 
+                price: 150000,
+                emoji: "📚",
+                badge: "Mới"
+            },
+            {
+                id: 3,
+                title: "Giải bài thực tế",
+                publisher: "MapStudy",
+                price: 160000,
+                emoji: "🔍",
+                badge: "Thực hành"
+            },
+            {
+                id: 4, 
+                title: "Cẩm nang Lý trung học",
+                publisher: "MapStudy",
+                price: 200000,
+                emoji: "📖",
+                badge: "Toàn diện"
+            },
+            {
+                id: 5,
+                title: "Công thức cần nhớ",
+                publisher: "MapStudy",
+                price: 100000,
+                emoji: "🧠",
+                badge: "Tóm tắt"
+            }
+        ];
+
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('magicbook_cart')) || [];
+
+        // DOM Elements
+        const productsGrid = document.getElementById('productsGrid');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartCount = document.getElementById('cartCount');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const confirmOrderBtn = document.getElementById('confirmOrderBtn');
+        const checkoutForm = document.getElementById('checkoutForm');
+        const successModal = document.getElementById('successModal');
+        const successMessage = document.getElementById('successMessage');
+
+        // Initialize the page
+        function init() {
+            renderProducts();
+            updateCartCount();
+            setupEventListeners();
+        }
+
+        // Render products to the page
+        function renderProducts() {
+            productsGrid.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        ${product.emoji}
+                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-publisher">${product.publisher}</p>
+                        <div class="product-price">${formatPrice(product.price)}</div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Cart functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            showAddedToCartMessage(product.title);
+        }
+
+        function updateCart() {
+            localStorage.setItem('magicbook_cart', JSON.stringify(cart));
+            updateCartCount();
+            renderCartItems();
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        function renderCartItems() {
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div style="text-align: center; padding: 3rem 1rem; color: var(--text); opacity: 0.7;">
+                        <i class="fas fa-shopping-basket" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>Giỏ hàng của bạn đang trống</p>
+                    </div>
+                `;
+                cartTotal.textContent = 'Tổng cộng: 0₫';
+                checkoutForm.style.display = 'none';
+                checkoutBtn.style.display = 'block';
+                confirmOrderBtn.style.display = 'none';
+                return;
+            }
+
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h4>${item.title}</h4>
+                        <div class="cart-item-price">${formatPrice(item.price)}</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                        </div>
+                    </div>
+                    <div>
+                        <strong>${formatPrice(item.price * item.quantity)}</strong>
+                        <button class="remove-item" onclick="removeFromCart(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `Tổng cộng: ${formatPrice(total)}`;
+            
+            // Show checkout form if cart has items
+            checkoutForm.style.display = 'block';
+        }
+
+        function updateQuantity(productId, newQuantity) {
+            if (newQuantity < 1) {
+                removeFromCart(productId);
+                return;
+            }
+            
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity = newQuantity;
+                updateCart();
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(price);
+        }
+
+        function showAddedToCartMessage(productName) {
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                    <span>Đã thêm "<strong>${productName}</strong>" vào giỏ hàng!</span>
+                </div>
+            `;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: white;
+                color: var(--text);
+                padding: 1rem 1.5rem;
+                border-radius: 15px;
+                box-shadow: var(--shadow);
+                z-index: 1002;
+                animation: slideInRight 0.3s ease;
+                border-left: 4px solid var(--success);
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+
+        function validateForm() {
+            const name = document.getElementById('customerName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
+            
+            if (!name) {
+                alert('Vui lòng nhập họ và tên');
+                return false;
+            }
+            
+            if (!phone) {
+                alert('Vui lòng nhập số điện thoại');
+                return false;
+            }
+            
+            if (!email) {
+                alert('Vui lòng nhập email');
+                return false;
+            }
+            
+            if (!address) {
+                alert('Vui lòng nhập địa chỉ nhận hàng');
+                return false;
+            }
+            
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Vui lòng nhập email hợp lệ');
+                return false;
+            }
+            
+            // Basic phone validation
+            const phoneRegex = /^[0-9]{10,11}$/;
+            if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+                alert('Vui lòng nhập số điện thoại hợp lệ (10-11 chữ số)');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function showSuccessModal() {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const orderDetails = cart.map(item => 
+                `${item.title} x${item.quantity} - ${formatPrice(item.price * item.quantity)}`
+            ).join('\n');
+            
+            successMessage.innerHTML = `
+                Cảm ơn <strong>${document.getElementById('customerName').value}</strong> đã đặt hàng!<br><br>
+                Tổng tiền: <strong>${formatPrice(total)}</strong><br>
+                Chúng tôi sẽ liên hệ với bạn qua số điện thoại <strong>${document.getElementById('customerPhone').value}</strong> trong thời gian sớm nhất.
+            `;
+            
+            successModal.style.display = 'flex';
+        }
+
+        function closeSuccessModal() {
+            successModal.style.display = 'none';
+            cartModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Reset form and cart
+            document.getElementById('checkoutForm').reset();
+            cart = [];
+            updateCart();
+        }
+
+        function setupEventListeners() {
+            cartIcon.addEventListener('click', () => {
+                cartModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeCart.addEventListener('click', () => {
+                cartModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert('Giỏ hàng của bạn đang trống!');
+                    return;
+                }
+                
+                // Show confirm button and hide checkout button
+                checkoutBtn.style.display = 'none';
+                confirmOrderBtn.style.display = 'block';
+                
+                // Scroll to form
+                checkoutForm.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            confirmOrderBtn.addEventListener('click', () => {
+                if (validateForm()) {
+                    showSuccessModal();
+                }
+            });
+
+            // Close cart when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === cartModal) {
+                    cartModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+                if (e.target === successModal) {
+                    closeSuccessModal();
+                }
+            });
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize the application
+        init();
+    </script>
 </body>
 </html>
