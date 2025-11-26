@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Book - Nhà xuất bản MapStudy</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Magic Book - MapStudy</title>
     <style>
         /* Biến màu pastel */
         :root {
@@ -45,7 +44,7 @@
             box-shadow: var(--shadow);
         }
         
-        /* Fixed Navigation Bar */
+        /* Fixed Navigation */
         .fixed-nav {
             position: fixed;
             bottom: 20px;
@@ -269,6 +268,29 @@
             overflow: hidden;
         }
         
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .product-image.has-image .emoji-placeholder {
+            display: none;
+        }
+        
+        .emoji-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        
         .product-badge {
             position: absolute;
             top: 15px;
@@ -306,6 +328,29 @@
             line-height: 1.5;
         }
         
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .product-sales {
+            color: var(--text);
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #FFC107;
+        }
+        
         .product-price {
             font-size: 1.5rem;
             font-weight: bold;
@@ -329,6 +374,142 @@
         .add-to-cart:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Reviews Section */
+        .reviews-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .reviews-title {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .add-review-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .add-review-btn:hover {
+            background: var(--secondary);
+        }
+        
+        .reviews-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+        }
+        
+        .review-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .review-author {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .review-date {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 0.8rem;
+        }
+        
+        .review-rating {
+            color: #FFC107;
+            margin-bottom: 0.5rem;
+        }
+        
+        .review-text {
+            color: var(--text);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .no-reviews {
+            text-align: center;
+            color: var(--text);
+            opacity: 0.7;
+            padding: 2rem;
+            font-style: italic;
+        }
+        
+        .review-form {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+        }
+        
+        .review-form h4 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .rating-input {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        .star {
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .star.active {
+            color: #FFC107;
+        }
+        
+        .review-textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 1rem;
+            font-family: inherit;
+        }
+        
+        .review-submit-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .review-submit-btn:hover {
+            background: var(--primary);
         }
         
         /* Footer */
@@ -593,6 +774,81 @@
             margin-bottom: 2rem;
         }
         
+        /* Image Manager */
+        .image-manager {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .manager-title {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .image-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .image-control {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+        
+        .image-control h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .image-preview {
+            width: 100%;
+            height: 120px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .url-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .update-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .update-btn:hover {
+            background: var(--primary);
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .header-container {
@@ -625,6 +881,10 @@
             .nav-btn {
                 padding: 10px 15px;
                 font-size: 0.8rem;
+            }
+            
+            .image-controls {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -674,12 +934,20 @@
         </div>
     </section>
 
+    <!-- Image Manager -->
+    <section class="image-manager" id="imageManager">
+
+        <div class="image-controls" id="imageControls">
+            <!-- Controls sẽ được tạo bằng JavaScript -->
+        </div>
+    </section>
+
     <!-- Products Section -->
     <section class="products" id="products">
         <h2 class="section-title">Bộ Sách Vật Lý 12</h2>
         <p class="section-subtitle">Nhà xuất bản MapStudy - Đồng hành cùng sự thành công của bạn</p>
         <div class="products-grid" id="productsGrid">
-            <!-- Products will be loaded by JavaScript -->
+            <!-- Products sẽ được tải bằng JavaScript -->
         </div>
     </section>
 
@@ -724,7 +992,7 @@
             <button class="close-cart" id="closeCart">×</button>
         </div>
         <div class="cart-items" id="cartItems">
-            <!-- Cart items will be loaded here -->
+            <!-- Cart items sẽ được tải ở đây -->
         </div>
         <div class="cart-total" id="cartTotal">
             Tổng cộng: 0₫
@@ -735,19 +1003,19 @@
             <h3 style="color: var(--secondary); margin-bottom: 1.5rem; text-align: center;">Thông tin đặt hàng</h3>
             <div class="form-group">
                 <label for="customerName">Họ và tên *</label>
-                <input type="text" id="customerName" placeholder="Nhập họ và tên" required oninput="validateForm()">
+                <input type="text" id="customerName" placeholder="Nhập họ và tên" required>
             </div>
             <div class="form-group">
                 <label for="customerPhone">Số điện thoại *</label>
-                <input type="tel" id="customerPhone" placeholder="Nhập số điện thoại" required oninput="validateForm()">
+                <input type="tel" id="customerPhone" placeholder="Nhập số điện thoại" required>
             </div>
             <div class="form-group">
                 <label for="customerEmail">Email *</label>
-                <input type="email" id="customerEmail" placeholder="Nhập email" required oninput="validateForm()">
+                <input type="email" id="customerEmail" placeholder="Nhập email" required>
             </div>
             <div class="form-group">
                 <label for="customerAddress">Địa chỉ nhận hàng *</label>
-                <textarea id="customerAddress" rows="3" placeholder="Nhập địa chỉ chi tiết" required oninput="validateForm()"></textarea>
+                <textarea id="customerAddress" rows="3" placeholder="Nhập địa chỉ chi tiết" required></textarea>
             </div>
             <div class="form-row">
                 <div class="form-group">
@@ -795,62 +1063,81 @@
         </div>
     </div>
 
-    <!-- Audio Elements -->
-    <audio id="addToCartSound" preload="auto">
-        <source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav">
-    </audio>
-    
-    <audio id="successSound" preload="auto">
-        <source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav">
-    </audio>
-
     <script>
-        // Product data for MapStudy books with descriptions
-        const products = [
+        // Product data với URL ảnh từ internet
+        let products = [
             {
                 id: 1,
                 title: "Đột phá Lý 12",
                 publisher: "MapStudy",
                 price: 135000,
+                image: "IMG_6015.jpeg",
                 emoji: "🚀",
                 badge: "Bán chạy",
-                description: "Cuốn sách giúp học sinh nắm vững kiến thức cơ bản và nâng cao Vật Lý 12. Phương pháp học hiện đại, bài tập đa dạng từ cơ bản đến nâng cao."
+                sales: 1245,
+                rating: 4.7,
+                reviews: [
+                    { author: "Nguyễn Văn A", rating: 5, text: "Sách rất hay, trình bày khoa học", date: "2024-01-15" }
+                ],
+                description: "Cuốn sách giúp học sinh nắm vững kiến thức cơ bản và nâng cao Vật Lý 12."
             },
             {
                 id: 2,
                 title: "Tổng ôn Lý thuyết Lý 12",
                 publisher: "MapStudy", 
                 price: 150000,
+                image: "IMG_6017.jpeg",
                 emoji: "📚",
                 badge: "Mới",
-                description: "Hệ thống toàn bộ lý thuyết trọng tâm Vật Lý 12. Công thức được trình bày khoa học, dễ hiểu, dễ nhớ. Phù hợp cho việc ôn tập nhanh trước kỳ thi."
+                sales: 876,
+                rating: 4.5,
+                reviews: [
+                    { author: "Lê Văn C", rating: 5, text: "Tóm tắt lý thuyết rất tốt", date: "2024-03-05" }
+                ],
+                description: "Hệ thống toàn bộ lý thuyết trọng tâm Vật Lý 12."
             },
             {
                 id: 3,
                 title: "Giải bài thực tế",
                 publisher: "MapStudy",
                 price: 160000,
+                image: "IMG_6016.jpeg",
                 emoji: "🔍",
                 badge: "Thực hành",
-                description: "Chuyên về các dạng bài tập vận dụng thực tế. Giúp học sinh hiểu sâu bản chất vật lý và ứng dụng vào đời sống. Bài tập có lời giải chi tiết."
+                sales: 654,
+                rating: 4.3,
+                reviews: [],
+                description: "Chuyên về các dạng bài tập vận dụng thực tế."
             },
             {
                 id: 4, 
                 title: "Cẩm nang Lý trung học",
                 publisher: "MapStudy",
                 price: 200000,
+                image: "IMG_6014.jpeg",
                 emoji: "📖",
                 badge: "Toàn diện",
-                description: "Bộ sách tổng hợp kiến thức Vật Lý cấp THPT. Bao gồm cả lớp 10, 11, 12. Lý tưởng cho học sinh ôn thi đại học và học sinh muốn hệ thống lại kiến thức."
+                sales: 432,
+                rating: 4.8,
+                reviews: [
+                    { author: "Phạm Thị D", rating: 5, text: "Sách tổng hợp rất đầy đủ", date: "2024-01-28" }
+                ],
+                description: "Bộ sách tổng hợp kiến thức Vật Lý cấp THPT."
             },
             {
                 id: 5,
                 title: "Công thức cần nhớ",
                 publisher: "MapStudy",
                 price: 100000,
+                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=300&fit=crop",
                 emoji: "🧠",
                 badge: "Tóm tắt",
-                description: "Tổng hợp tất cả công thức Vật Lý 12 một cách ngắn gọn, dễ nhớ. Thiết kế nhỏ gọn, tiện lợi mang theo. Phù hợp cho việc tra cứu nhanh khi làm bài."
+                sales: 987,
+                rating: 4.6,
+                reviews: [
+                    { author: "Trần Văn G", rating: 5, text: "Rất tiện lợi để tra cứu", date: "2024-02-22" }
+                ],
+                description: "Tổng hợp tất cả công thức Vật Lý 12 một cách ngắn gọn."
             }
         ];
 
@@ -859,6 +1146,7 @@
 
         // DOM Elements
         const productsGrid = document.getElementById('productsGrid');
+        const imageControls = document.getElementById('imageControls');
         const cartIcon = document.getElementById('cartIcon');
         const cartCount = document.getElementById('cartCount');
         const cartModal = document.getElementById('cartModal');
@@ -871,87 +1159,285 @@
         const successModal = document.getElementById('successModal');
         const successMessage = document.getElementById('successMessage');
 
-        // Audio elements
-        const addToCartSound = document.getElementById('addToCartSound');
-        const successSound = document.getElementById('successSound');
-
-        // Create simple beep sounds using Web Audio API
-        function createBeepSound(frequency, duration, type) {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.frequency.value = frequency;
-            oscillator.type = type;
-            
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
-            
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + duration);
-        }
-
-        // Play sound functions
-        function playAddToCartSound() {
-            createBeepSound(800, 0.1, 'sine');
-        }
-
-        function playSuccessSound() {
-            createBeepSound(1000, 0.3, 'sine');
-            setTimeout(() => createBeepSound(1200, 0.2, 'sine'), 150);
-            setTimeout(() => createBeepSound(1400, 0.4, 'sine'), 300);
-        }
-
-        // Navigation functions
-        function goToHome() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            playNavigationSound();
-        }
-
-        function goBack() {
-            window.history.back();
-            playNavigationSound();
-        }
-
-        function openCart() {
-            cartModal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            playNavigationSound();
-        }
-
-        function playNavigationSound() {
-            createBeepSound(600, 0.1, 'sine');
-        }
-
         // Initialize the page
         function init() {
+           
             renderProducts();
             updateCartCount();
             setupEventListeners();
+        }
+
+        // Render image controls
+        function renderImageControls() {
+            imageControls.innerHTML = products.map(product => `
+                <div class="image-control">
+                    <h4>${product.title}</h4>
+                    <div class="image-preview" id="preview-${product.id}">
+                        ${product.image ? 
+                            `<img src="${product.image}" alt="${product.title}" onerror="handlePreviewError(${product.id})">` : 
+                            `<div class="emoji-placeholder">${product.emoji}</div>`
+                        }
+                    </div>
+                    <input type="text" 
+                           class="url-input" 
+                           id="url-${product.id}" 
+                           placeholder="Nhập URL ảnh mới..."
+                           value="${product.image || ''}">
+                    <button class="update-btn" onclick="updateProductImage(${product.id})">
+                        <i class="fas fa-sync-alt"></i> Cập nhật ảnh
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Update product image
+        function updateProductImage(productId) {
+            const urlInput = document.getElementById(`url-${productId}`);
+            const newImageUrl = urlInput.value.trim();
+            
+            if (newImageUrl) {
+                const product = products.find(p => p.id === productId);
+                if (product) {
+                    product.image = newImageUrl;
+                    updateImagePreview(productId, newImageUrl);
+                    renderProducts(); // Re-render products với ảnh mới
+                    showSuccessMessage(`Đã cập nhật ảnh cho "${product.title}"`);
+                }
+            } else {
+                alert('Vui lòng nhập URL ảnh!');
+            }
+        }
+
+        // Update image preview
+        function updateImagePreview(productId, imageUrl) {
+            const preview = document.getElementById(`preview-${productId}`);
+            preview.innerHTML = `<img src="${imageUrl}" alt="Preview" onerror="handlePreviewError(${productId})">`;
+        }
+
+        // Handle preview error
+        function handlePreviewError(productId) {
+            const product = products.find(p => p.id === productId);
+            const preview = document.getElementById(`preview-${productId}`);
+            preview.innerHTML = `<div class="emoji-placeholder">${product.emoji}</div>`;
+            showErrorMessage('Không thể tải ảnh. Vui lòng kiểm tra lại URL!');
         }
 
         // Render products to the page
         function renderProducts() {
             productsGrid.innerHTML = products.map(product => `
                 <div class="product-card">
-                    <div class="product-image">
-                        ${product.emoji}
+                    <div class="product-image ${product.image ? 'has-image' : ''}">
+                        ${product.image ? 
+                            `<img src="${product.image}" alt="${product.title}" onerror="handleImageError(this, '${product.emoji}')">` : 
+                            `<div class="emoji-placeholder">${product.emoji}</div>`
+                        }
                         ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">${product.title}</h3>
                         <p class="product-publisher">${product.publisher}</p>
                         <p class="product-description">${product.description}</p>
+                        
+                        <div class="product-meta">
+                            <div class="product-sales">
+                                <i class="fas fa-shopping-bag"></i> Đã bán: ${product.sales}
+                            </div>
+                            <div class="product-rating">
+                                ${renderStars(product.rating)}
+                                <span>${product.rating}</span>
+                            </div>
+                        </div>
+                        
                         <div class="product-price">${formatPrice(product.price)}</div>
                         <button class="add-to-cart" onclick="addToCart(${product.id})">
                             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                         </button>
+                        
+                        <!-- Reviews Section -->
+                        <div class="reviews-section">
+                            <div class="reviews-header">
+                                <h4 class="reviews-title">Đánh giá (${product.reviews.length})</h4>
+                                <button class="add-review-btn" onclick="openReviewForm(${product.id})">
+                                    <i class="fas fa-pen"></i> Viết đánh giá
+                                </button>
+                            </div>
+                            
+                            <div class="reviews-list">
+                                ${product.reviews.length > 0 ? 
+                                    product.reviews.map(review => `
+                                        <div class="review-item">
+                                            <div class="review-header">
+                                                <span class="review-author">${review.author}</span>
+                                                <span class="review-date">${formatDate(review.date)}</span>
+                                            </div>
+                                            <div class="review-rating">
+                                                ${renderStars(review.rating)}
+                                            </div>
+                                            <p class="review-text">${review.text}</p>
+                                        </div>
+                                    `).join('') : 
+                                    '<div class="no-reviews">Chưa có đánh giá nào</div>'
+                                }
+                            </div>
+                            
+                            <div class="review-form" id="reviewForm-${product.id}" style="display: none;">
+                                <h4>Viết đánh giá của bạn</h4>
+                                <div class="rating-input">
+                                    ${[1,2,3,4,5].map(star => `
+                                        <span class="star" data-rating="${star}" onclick="setRating(${product.id}, ${star})">★</span>
+                                    `).join('')}
+                                </div>
+                                <textarea class="review-textarea" id="reviewText-${product.id}" placeholder="Chia sẻ cảm nhận của bạn về sản phẩm..."></textarea>
+                                <button class="review-submit-btn" onclick="submitReview(${product.id})">Gửi đánh giá</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `).join('');
+        }
+
+        // Xử lý khi ảnh bị lỗi
+        function handleImageError(img, emoji) {
+            img.style.display = 'none';
+            const placeholder = document.createElement('div');
+            placeholder.className = 'emoji-placeholder';
+            placeholder.textContent = emoji;
+            placeholder.style.cssText = `
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                font-size: 4rem;
+            `;
+            img.parentNode.appendChild(placeholder);
+        }
+
+        // Show success message
+        function showSuccessMessage(message) {
+            showNotification(message, 'success');
+        }
+
+        // Show error message
+        function showErrorMessage(message) {
+            showNotification(message, 'error');
+        }
+
+        // Show notification
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+            const color = type === 'success' ? 'var(--success)' : '#ff6b6b';
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas ${icon}" style="color: ${color};"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: white;
+                color: var(--text);
+                padding: 1rem 1.5rem;
+                border-radius: 15px;
+                box-shadow: var(--shadow);
+                z-index: 1002;
+                animation: slideInRight 0.3s ease;
+                border-left: 4px solid ${color};
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Render star rating
+        function renderStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= Math.floor(rating)) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            return stars;
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('vi-VN');
+        }
+
+        // Format price
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(price);
+        }
+
+        // Open review form
+        function openReviewForm(productId) {
+            const reviewForm = document.getElementById(`reviewForm-${productId}`);
+            reviewForm.style.display = reviewForm.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Set rating for review
+        function setRating(productId, rating) {
+            const stars = document.querySelectorAll(`#reviewForm-${productId} .star`);
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        // Submit review
+        function submitReview(productId) {
+            const stars = document.querySelectorAll(`#reviewForm-${productId} .star.active`);
+            const reviewText = document.getElementById(`reviewText-${productId}`).value.trim();
+            
+            if (stars.length === 0) {
+                alert('Vui lòng chọn số sao đánh giá!');
+                return;
+            }
+            
+            if (!reviewText) {
+                alert('Vui lòng nhập nội dung đánh giá!');
+                return;
+            }
+            
+            const product = products.find(p => p.id === productId);
+            const newReview = {
+                author: "Khách hàng",
+                rating: stars.length,
+                text: reviewText,
+                date: new Date().toISOString().split('T')[0]
+            };
+            
+            product.reviews.push(newReview);
+            
+            // Update average rating
+            const totalRating = product.reviews.reduce((sum, review) => sum + review.rating, 0);
+            product.rating = (totalRating / product.reviews.length).toFixed(1);
+            
+            // Re-render products to show the new review
+            renderProducts();
+            
+            // Show success message
+            showSuccessMessage('Cảm ơn bạn đã gửi đánh giá!');
         }
 
         // Cart functions
@@ -969,8 +1455,7 @@
             }
             
             updateCart();
-            showAddedToCartMessage(product.title);
-            playAddToCartSound();
+            showSuccessMessage(`Đã thêm "${product.title}" vào giỏ hàng!`);
         }
 
         function updateCart() {
@@ -1036,21 +1521,12 @@
             if (item) {
                 item.quantity = newQuantity;
                 updateCart();
-                playNavigationSound();
             }
         }
 
         function removeFromCart(productId) {
             cart = cart.filter(item => item.id !== productId);
             updateCart();
-            playNavigationSound();
-        }
-
-        function formatPrice(price) {
-            return new Intl.NumberFormat('vi-VN', {
-                style: 'currency',
-                currency: 'VND'
-            }).format(price);
         }
 
         function validateForm() {
@@ -1067,41 +1543,8 @@
             return isValid;
         }
 
-        function showAddedToCartMessage(productName) {
-            const notification = document.createElement('div');
-            notification.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-check-circle" style="color: var(--success);"></i>
-                    <span>Đã thêm "<strong>${productName}</strong>" vào giỏ hàng!</span>
-                </div>
-            `;
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: white;
-                color: var(--text);
-                padding: 1rem 1.5rem;
-                border-radius: 15px;
-                box-shadow: var(--shadow);
-                z-index: 1002;
-                animation: slideInRight 0.3s ease;
-                border-left: 4px solid var(--success);
-            `;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOutRight 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 2000);
-        }
-
         function showSuccessModal() {
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const orderDetails = cart.map(item => 
-                `${item.title} x${item.quantity} - ${formatPrice(item.price * item.quantity)}`
-            ).join('\n');
             
             successMessage.innerHTML = `
                 Cảm ơn <strong>${document.getElementById('customerName').value}</strong> đã đặt hàng!<br><br>
@@ -1110,7 +1553,6 @@
             `;
             
             successModal.style.display = 'flex';
-            playSuccessSound();
         }
 
         function closeSuccessModal() {
@@ -1122,20 +1564,28 @@
             document.getElementById('checkoutForm').reset();
             cart = [];
             updateCart();
-            playNavigationSound();
+        }
+
+        // Navigation functions
+        function goToHome() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function openCart() {
+            cartModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
 
         function setupEventListeners() {
-            cartIcon.addEventListener('click', () => {
-                cartModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                playNavigationSound();
-            });
+            cartIcon.addEventListener('click', openCart);
 
             closeCart.addEventListener('click', () => {
                 cartModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
-                playNavigationSound();
             });
 
             checkoutBtn.addEventListener('click', () => {
@@ -1144,13 +1594,9 @@
                     return;
                 }
                 
-                // Show confirm button and hide checkout button
                 checkoutBtn.style.display = 'none';
                 confirmOrderBtn.style.display = 'block';
-                
-                // Scroll to form
                 checkoutForm.scrollIntoView({ behavior: 'smooth' });
-                playNavigationSound();
             });
 
             confirmOrderBtn.addEventListener('click', () => {
@@ -1158,11 +1604,16 @@
                     showSuccessModal();
                 } else {
                     alert('Vui lòng điền đầy đủ và chính xác thông tin bắt buộc!');
-                    playNavigationSound();
                 }
             });
 
-            // Close cart when clicking outside
+            // Form validation on input
+            document.getElementById('customerName').addEventListener('input', validateForm);
+            document.getElementById('customerPhone').addEventListener('input', validateForm);
+            document.getElementById('customerEmail').addEventListener('input', validateForm);
+            document.getElementById('customerAddress').addEventListener('input', validateForm);
+
+            // Close modals when clicking outside
             window.addEventListener('click', (e) => {
                 if (e.target === cartModal) {
                     cartModal.style.display = 'none';
@@ -1204,5 +1655,8 @@
         // Initialize the application
         init();
     </script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </body>
 </html>
